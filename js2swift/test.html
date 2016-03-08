@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <script type="text/javascript" src="https://raw.githubusercontent.com/jquery/jquery-dist/master/dist/jquery.min.js"></script>
+            <title>JS与APP交互</title>
+            <script>
+                $(document).ready(function(e) {
+                    $("#old").click(function(e) {
+                        alert('UIWebView');
+                        document.location = "hello://js2swift";
+                    });
+                      
+                    $("#new").click(function(e) {
+                        alert('WKWebView');
+                        var message = {
+                            'method' : 'hello',
+                            'param1' : 'js2swift',
+                        };
+                        window.webkit.messageHandlers.js2swift.postMessage(message);
+                    });
+                });
+                </script>
+    </head>
+    
+    <body style="font-size:20px;">
+        <h1>iOS中JS调用APP Swift方法</h1><br/>
+        <button  style="font-size:30px;" id="old">原始拦截URL</button><br/><br/>
+        <button  style="font-size:30px;" id="new">iOS8+委托调用</button>
+    </body>
+</html>
+
